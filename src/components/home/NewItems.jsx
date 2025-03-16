@@ -8,6 +8,7 @@ import Slider from "react-slick";
 
 const NewItems = ({ nftData }) => {
   const [localNftData, setLocalNftData] = useState([]);
+  const [timeLeft, setTimeLeft] = useState(5 * 60 * 60 + 30 * 60 + 32);
   const { id } = useParams();
 
   useEffect(() => {
@@ -22,6 +23,23 @@ const NewItems = ({ nftData }) => {
     fetchNFTs();
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft((prevTime) => {
+        if (prevTime <= 0) {
+          clearInterval(interval);
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const hours = Math.floor(timeLeft / 3600);
+  const minutes = Math.floor((timeLeft % 3600) / 60);
+  const seconds = timeLeft % 60;
+
   const Arrow = ({ className, style, onClick }) => {
     return (
       <div
@@ -35,7 +53,7 @@ const NewItems = ({ nftData }) => {
         onClick={onClick}
       />
     );
-  };
+  }
 
   const settings = {
     dots: false,
@@ -45,7 +63,7 @@ const NewItems = ({ nftData }) => {
     slidesToScroll: 1,
     nextArrow: <Arrow />,
     prevArrow: <Arrow />,
-    initialSlide: 0,
+    initialSlide: 0,          
     responsive: [
       {
         breakpoint: 1024,
@@ -64,9 +82,9 @@ const NewItems = ({ nftData }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-        },
-      },
-    ],
+        }
+      }
+    ]
   };
 
   return (
@@ -83,7 +101,7 @@ const NewItems = ({ nftData }) => {
           <Slider {...settings}>
           {localNftData.length > 0 &&
                 localNftData.map((nft, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+            <div key={index} className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
@@ -96,7 +114,7 @@ const NewItems = ({ nftData }) => {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">5h 30m 32s</div>
+                <div className="de_countdown">{hours}h {minutes}m {seconds}s</div>
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
