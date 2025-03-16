@@ -16,6 +16,11 @@ const NewItems = ({ nftData }) => {
       try {
         const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems');
         setLocalNftData(response.data);
+
+        if (response.data.length > 0) {
+          const countdownTime = response.data[0].countdownTime;
+          setTimeLeft(countdownTime);
+        }
       } catch(error) {
         console.error("There was an error fetching the NFT data!", error);
       }
@@ -34,7 +39,7 @@ const NewItems = ({ nftData }) => {
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [timeLeft]);
 
   const hours = Math.floor(timeLeft / 3600);
   const minutes = Math.floor((timeLeft % 3600) / 60);
@@ -87,6 +92,8 @@ const NewItems = ({ nftData }) => {
     ]
   };
 
+
+
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -101,7 +108,7 @@ const NewItems = ({ nftData }) => {
           <Slider {...settings}>
           {localNftData.length > 0 &&
                 localNftData.map((nft, index) => (
-            <div key={index} className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div key={index} gap="gap">
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
