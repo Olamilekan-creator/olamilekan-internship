@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const TopSellers = () => {
   const [localNftData, setLocalNftData] = useState([]);
-  const [isLoading, setIsLoading] = useState();
+  const [isLoading, setIsLoading] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -17,7 +17,6 @@ const TopSellers = () => {
 useEffect(() => {
   const fetchNFTs = async () => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 3000)); 
       const response = await axios.get(
         "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
       );
@@ -77,7 +76,6 @@ const SkeletonNftCard = ({
           src=""
           alt=""
         />
-        <i className="fa fa-check"></i>
       </Link>
     </div>
     <div className="author_list_info">
