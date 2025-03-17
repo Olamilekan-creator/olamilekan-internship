@@ -53,7 +53,7 @@ const Skeleton = ({
 const SkeletonNftCard = ({
   imageHeight = "45px",
   titleHeight = "10px",
-  titleWidth = "60px",
+  titleWidth = "55px",
   imageWidth = "45px",
   ercHeight = "10px",
   ercWidth = "35px",
@@ -82,7 +82,7 @@ const SkeletonNftCard = ({
     </div>
     <div className="author_list_info">
       <Link to="/author">
-      <Skeleton width="60px" height="10px" isSquare={true} />
+      <Skeleton width="55px" height="10px" isSquare={true} />
     <div
       className={`${titleClass}`}
       style={{ height: titleHeight,
@@ -122,7 +122,7 @@ return (
                 key={index}
                 imageHeight = "45px"
                 titleHeight = "10px"
-                titleWidth = "60px"
+                titleWidth = "55px"
                 imageWidth = "45px"
                 ercHeight = "10px"
                 ercWidth = "35px"
