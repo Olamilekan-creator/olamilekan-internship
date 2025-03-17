@@ -80,10 +80,7 @@ const ExploreItems = () => {
       {isLoading ? (
             <div className="row">
               {Array.from({ length: 4 }).map((_, index) => (
-                <div
-                  className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                  key={index}
-                >
+                <div key={index}>
                   <SkeletonNftExplore />
                 </div>
               ))}
