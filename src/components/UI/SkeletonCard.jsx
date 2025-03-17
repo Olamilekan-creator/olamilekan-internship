@@ -16,7 +16,7 @@ const SkeletonCard = () => {
       </div>
 
       <div className="de_countdown_skeleton">
-        <Skeleton width="130px" height="30px" />
+        <Skeleton width="130px" height="30px"  left="89%" />
       </div>
 
       <div className="nft__item_wrap">
