@@ -13,6 +13,7 @@ const TopSellers = () => {
     }
   }, [localNftData]);
 
+
 useEffect(() => {
   const fetchNFTs = async () => {
     try {
@@ -103,7 +104,7 @@ const SkeletonNftCard = ({
   );
 }
 
-  return (
+return (
     <section id="section-popular" className="pb-5">
       <div className="container">
         <div className="row">
@@ -113,6 +114,7 @@ const SkeletonNftCard = ({
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+
 
           {isLoading ? (
             Array.from({ length: 5 }).map((_, index) => (
