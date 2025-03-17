@@ -34,7 +34,7 @@ const ExploreItems = () => {
 
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 1000);
 
     return () => clearTimeout(timeout);
 
