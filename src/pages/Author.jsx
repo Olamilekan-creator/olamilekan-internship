@@ -12,7 +12,7 @@ const Author = ({ nftData }) => {
     const fetchNFTs = async () => {
       try {
         const response = await axios.get(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors=${author}`
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors=${id}`
         );
         setLocalNftData(response.data);
       } catch (error) {

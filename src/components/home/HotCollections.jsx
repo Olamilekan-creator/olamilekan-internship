@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,6 +8,7 @@ import Slider from "react-slick";
 const HotCollections = ({ nftData }) => {
   const [localNftData, setLocalNftData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { id } = useParams();
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
@@ -81,7 +82,6 @@ const HotCollections = ({ nftData }) => {
    size = "100%",
     className = "skeleton-avatar",
     isSquare = false,
-    margin = "0 auto",
   }) => {
     const width = isSquare ? size : `calc(${size} * 0.8)`;
     const height = isSquare ? size : `calc(${size} * 1.2)`;
@@ -107,12 +107,9 @@ const HotCollections = ({ nftData }) => {
     titleHeight = "10px",
     imageWidth = "100%",
     ercHeight = "20px",
-    ppHeight = "40px",
     imageClass = "skeleton-image",
     titleClass = "skeleton-title",
     ercClass = "skeleton-erc",
-    ppClass = "skeleton-icon",
-    margin = "0 auto",
   }) => {
     return (
       <div className="px-1">
@@ -199,7 +196,7 @@ const HotCollections = ({ nftData }) => {
                         </Link>
                       </div>
                       <div className="nft_coll_pp">
-                        <Link to={`/author/${nft.authorId}`}>
+                        <Link to={`/author/${nft.authorId || id}`}>
                           <img
                             className="lazy pp-coll"
                             src={`${nft.authorImage}`}
