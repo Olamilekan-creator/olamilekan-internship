@@ -9,7 +9,7 @@ const ExploreItems = () => {
   const [timeLeft, setTimeLeft] = useState(5 * 60 * 60 + 30 * 60 + 32);
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState("");
-  const { id } = useParams();
+  const { id, authorId, nftId } = useParams();
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
@@ -30,7 +30,10 @@ const ExploreItems = () => {
         setIsLoading(false);
       }
     };
+
+  if (id) {
     fetchNFTs();
+}
 
     const timeout = setTimeout(() => {
       setIsLoading(false);
@@ -38,7 +41,7 @@ const ExploreItems = () => {
 
     return () => clearTimeout(timeout);
 
-  }, [filter]);
+  }, [id, filter]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -54,7 +57,7 @@ const ExploreItems = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timeLeft]);
+  }, []);
 
   const hours = Math.floor(timeLeft / 3600);
 
@@ -95,7 +98,7 @@ const ExploreItems = () => {
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to="/author"
+                to={`/author/${nft.authorId}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
@@ -123,12 +126,12 @@ const ExploreItems = () => {
                   </div>
                 </div>
               </div>
-              <Link to="/item-details">
+              <Link to={`/item-details/${nft.nftId}`}>
                 <img src={nft.nftImage} className="lazy nft__item_preview" alt="" />
               </Link>
             </div>
             <div className="nft__item_info">
-              <Link to="/item-details">
+              <Link to={`/item-details/${nft.nftId}`}>
                 <h4>{nft.title}</h4>
               </Link>
               <div className="nft__item_price">{`${nft.price}`} ETH</div>
