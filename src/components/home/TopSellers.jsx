@@ -1,11 +1,10 @@
 import React,{ useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 const TopSellers = () => {
   const [localNftData, setLocalNftData] = useState([]);
   const [isLoading, setIsLoading] = useState([]);
-  const { id } = useParams();
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
