@@ -7,6 +7,22 @@ import axios from "axios";
 
 const Author = ({ nftData }) => {
 
+  const [localNftData, setLocalNftData] = useState([]);
+
+  useEffect(() => {
+    const fetchNFTs = async () => {
+      try {
+        const response = await axios.get(
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors=${id}`
+        );
+        setLocalNftData(response.data);
+      } catch (error) {
+        console.error("There was an error fetching the NFT data!", error);
+      }
+    };
+    fetchNFTs();
+  }, []);
+
   return (
       <div id="wrapper">
         <div className="no-bottom no-top" id="content">
