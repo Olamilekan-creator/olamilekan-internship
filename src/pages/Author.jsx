@@ -9,6 +9,12 @@ const [nftCollection, setNftCollection] = useState([]);
   const [localNftData, setLocalNftData] = useState([]);
   const { authorId } = useParams();
 
+const Author = ({ nftData }) => {
+const { authorId } = useParams();
+  const [localNftData, setLocalNftData] = useState([]);
+  const [nftCollection, setNftCollection] = useState([]);
+
+
   useEffect(() => {
     const fetchNFTs = async () => {
       try {
@@ -70,9 +76,15 @@ const [nftCollection, setNftCollection] = useState([]);
                   </div>
                 </div>
 
+
                 <div className="col-md-12">
                   <div className="de_tab tab_simple">
+
                     <AuthorItems localNftData={localNftData} nftCollection={nftCollection}/>
+
+                    
+                    <AuthorItems localNftData={localNftData} nftCollection = {nftCollection}/>
+
                   </div>
                 </div>
               </div>
