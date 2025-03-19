@@ -6,25 +6,8 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
 
 const Author = ({ nftData }) => {
-  const [localNftData, setLocalNftData] = useState([]);
-  const { id } = useParams();
-
-  useEffect(() => {
-    const fetchNFTs = async () => {
-      try {
-        const response = await axios.get(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?`
-        );
-        setLocalNftData(response.data);
-      } catch (error) {
-        console.error("There was an error fetching the NFT data!", error);
-      }
-    };
-    fetchNFTs();
-  }, []);
 
   return (
-    <>
       <div id="wrapper">
         <div className="no-bottom no-top" id="content">
           <div id="top"></div>
@@ -35,7 +18,6 @@ const Author = ({ nftData }) => {
             data-bgimage="url(images/author_banner.jpg) top"
             style={{ background: `url(${AuthorBanner}) top` }}
           ></section>
-
 
           <section aria-label="section">
             <div className="container">
@@ -81,7 +63,6 @@ const Author = ({ nftData }) => {
           </section>
         </div>
       </div>
-    </>
   );
 };
 
