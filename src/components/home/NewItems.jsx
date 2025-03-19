@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 
@@ -17,7 +17,6 @@ const NewItems = ({ nftData }) => {
 
   const [timeLeft, setTimeLeft] = useState(5 * 60 * 60 + 30 * 60 + 32);
 
-  const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -160,10 +159,10 @@ const NewItems = ({ nftData }) => {
                     <div className="nft__item">
                       <div className="author_list_pp">
                         <Link
-                          to={`/author/${nft.id}`}
+                          to="/author"
                           data-bs-toggle="tooltip"
                           data-bs-placement="top"
-                          title={`Creator: ${nft.authorId}`}
+                          title="Creator: Monica Lucas"
                         >
                           <img className="lazy" src={nft.authorImage} alt="" />
 
