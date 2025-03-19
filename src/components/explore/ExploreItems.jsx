@@ -99,7 +99,7 @@ const ExploreItems = () => {
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
-                <img className="lazy" src={nft.authorImage} alt="" />
+                <img className="lazy" src={nft.authorImage || id} alt="" />
                 <i className="fa fa-check"></i>
               </Link>
             </div>
