@@ -6,16 +6,18 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
 
 const Author = ({ nftData }) => {
-
+const { authorId } = useParams();
   const [localNftData, setLocalNftData] = useState([]);
+  const [nftCollection, setNftCollection] = useState([]);
 
   useEffect(() => {
     const fetchNFTs = async () => {
       try {
         const response = await axios.get(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors=${id}`
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
         );
         setLocalNftData(response.data);
+        setNftCollection(response.data.nftCollection)
       } catch (error) {
         console.error("There was an error fetching the NFT data!", error);
       }
@@ -69,9 +71,11 @@ const Author = ({ nftData }) => {
                   </div>
                 </div>
 
+
                 <div className="col-md-12">
                   <div className="de_tab tab_simple">
-                    <AuthorItems />
+                    
+                    <AuthorItems localNftData={localNftData} nftCollection = {nftCollection}/>
                   </div>
                 </div>
               </div>

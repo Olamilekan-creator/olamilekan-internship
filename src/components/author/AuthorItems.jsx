@@ -2,35 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
-const AuthorItems = ({ nftData }) => {
-  const [localNftData, setLocalNftData] = useState([]);
-  const { id } = useParams();
+const AuthorItems = ({ nftCollection, localNftData }) => {
 
-  useEffect(() => {
-    const fetchNFTs = async () => {
-      try {
-        const response = await axios.get(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors/${id}` 
-        );
-        setLocalNftData(response.data);
-      } catch (error) {
-        console.error("There was an error fetching the NFT data!", error);
-      }
-    };
-    fetchNFTs();
-  }, [id]);
 
   return (
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
           
-        {localNftData.map((nft, index) => (
+        {nftCollection.map((nft, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link to="">
-                    <img className="lazy" src={nft.authorImage} alt="" />
+                    <img className="lazy" src={localNftData.authorImage} alt="" />
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
@@ -52,7 +37,7 @@ const AuthorItems = ({ nftData }) => {
                       </div>
                     </div>
                   </div>
-                  <Link to={`/item-details/:${id}`}>
+                  <Link to={`/item-details/:${nft.id}`}>
                     <img
                       src={nft.nftImage}
                       className="lazy nft__item_preview"
@@ -61,7 +46,7 @@ const AuthorItems = ({ nftData }) => {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to={`/item-details/:${id}`}>
+                  <Link to={`/item-details/:${nft.id}`}>
                     <h4>Pinky Ocean</h4>
                   </Link>
                   <div className="nft__item_price">{`${nft.price}`} ETH</div>
