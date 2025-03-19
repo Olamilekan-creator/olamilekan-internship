@@ -2,13 +2,18 @@ import React, { useState, useEffect } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
+
+const Author = () => {
+const [nftCollection, setNftCollection] = useState([]);
+  const [localNftData, setLocalNftData] = useState([]);
+  const { authorId } = useParams();
 
 const Author = ({ nftData }) => {
 const { authorId } = useParams();
   const [localNftData, setLocalNftData] = useState([]);
   const [nftCollection, setNftCollection] = useState([]);
+
 
   useEffect(() => {
     const fetchNFTs = async () => {
@@ -23,7 +28,7 @@ const { authorId } = useParams();
       }
     };
     fetchNFTs();
-  }, []);
+  }, [authorId]);
 
   return (
       <div id="wrapper">
@@ -37,22 +42,21 @@ const { authorId } = useParams();
             style={{ background: `url(${AuthorBanner}) top` }}
           ></section>
 
-          <section aria-label="section">
-            <div className="container">
+{Array.isArray(nftCollection) && nftCollection.map((nft, index) => (
+          <section aria-label="section" key={index}>
+            <div className="container" >
               <div className="row">
                 <div className="col-md-12">
                   <div className="d_profile de-flex">
-                    <div className="de-flex-col">
+                    <div className="de-flex-col" >
                       <div className="profile_avatar">
-                        <img src={AuthorImage} alt="" />
+                        <img src={nft.authorImage} alt="" />
                         <i className="fa fa-check"></i>
                         <div className="profile_name">
                           <h4>
-                            Monica Lucas
-                            <span className="profile_username">@monicaaaa</span>
-                            <span id="wallet" className="profile_wallet">
-                              UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
-                            </span>
+                            {nft.authorName}
+                            <span className="profile_username">{nft.tag}</span>
+                            <span id="wallet" className="profile_wallet">{nft.address}</span>
                             <button id="btn_copy" title="Copy Text">
                               Copy
                             </button>
@@ -61,26 +65,32 @@ const { authorId } = useParams();
                       </div>
                       <div className="profile_follow de-flex">
                         <div className="de-flex-col">
-                          <div className="profile_follower">573 followers</div>
+                          <div className="profile_follower">{`${nft.followers}`} followers</div>
                           <Link to="#" className="btn-main">
                             Follow
                           </Link>
                         </div>
                       </div>
                     </div>
+                    
                   </div>
                 </div>
 
 
                 <div className="col-md-12">
                   <div className="de_tab tab_simple">
+
+                    <AuthorItems localNftData={localNftData} nftCollection={nftCollection}/>
+
                     
                     <AuthorItems localNftData={localNftData} nftCollection = {nftCollection}/>
+
                   </div>
                 </div>
               </div>
             </div>
           </section>
+           ))}
         </div>
       </div>
   );
