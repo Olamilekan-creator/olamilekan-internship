@@ -10,6 +10,7 @@ const HotCollections = ({ nftData }) => {
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
+
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
       setIsLoading(false);
