@@ -8,7 +8,7 @@ import Slider from "react-slick";
 const HotCollections = ({ nftData }) => {
   const [localNftData, setLocalNftData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { authorId, id, exploreId } = useParams();
+  const { authorId, id, exploreId, nftId } = useParams();
 
 
   useEffect(() => {
@@ -188,7 +188,7 @@ const HotCollections = ({ nftData }) => {
                   <div key={index} className="px-1">
                     <div className="nft_coll">
                       <div className="nft_wrap">
-                        <Link to={`/item-details/${nft.id}`}>
+                        <Link to={`/item-details/${nft.nftId}`}>
                           <img
                             src={`${nft.nftImage}`}
                             className="lazy img-fluid"
