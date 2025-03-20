@@ -7,7 +7,7 @@ import SkeletonAuthor from "../components/UI/SkeletonAuthor";
 
 const Author = () => {
   const [nftCollection, setNftCollection] = useState([]);
-  const [localNftData, setLocalNftData] = useState({});
+  const [localNftData, setLocalNftData] = useState([]);
   const [isFollowing, setIsFollowing] = useState(false);
   const { authorId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
