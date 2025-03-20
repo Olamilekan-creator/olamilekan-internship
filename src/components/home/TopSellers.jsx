@@ -1,10 +1,11 @@
 import React,{ useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
 
 const TopSellers = () => {
   const [localNftData, setLocalNftData] = useState([]);
   const [isLoading, setIsLoading] = useState([]);
+  const { authorId, id } = useParams();
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
@@ -69,16 +70,13 @@ const SkeletonNftCard = ({
         width: imageWidth
        }}
     ></div>{" "}
-      <Link to="/author">
         <img
           className="lazy pp-author"
           src=""
           alt=""
         />
-      </Link>
     </div>
     <div className="author_list_info">
-      <Link to="/author">
       <Skeleton width="55px" height="10px" isSquare={true} />
     <div
       className={`${titleClass}`}
@@ -86,7 +84,6 @@ const SkeletonNftCard = ({
         width: titleWidth
        }}
     ></div>{" "}
-    </Link>
       <span>
       <Skeleton width="35px" height="10px" isSquare={true} />
     <div
@@ -136,7 +133,7 @@ return (
                 <li key={index}>
                   <div className="author_list_pp">
                     <Skeleton />
-                    <Link to="/author">
+                    <Link to={`/author/${nft.authorId}`}>
                       <img
                         className="lazy pp-author"
                         src={nft.authorImage}
@@ -146,7 +143,7 @@ return (
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to="/author">{nft.authorName}</Link>
+                    <Link to={`/author/${nft.authorId}`}>{nft.authorName}</Link>
                     <span>{`${nft.price}`} ETH</span>
                   </div>
                 </li>

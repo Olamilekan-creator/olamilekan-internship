@@ -9,7 +9,7 @@ const ExploreItems = () => {
   const [timeLeft, setTimeLeft] = useState(5 * 60 * 60 + 30 * 60 + 32);
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState("");
-  const { id } = useParams();
+  const { authorId, id } = useParams();
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
