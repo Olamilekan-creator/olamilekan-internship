@@ -81,7 +81,6 @@ const HotCollections = ({ nftData }) => {
    size = "100%",
     className = "skeleton-avatar",
     isSquare = false,
-    margin = "0 auto",
   }) => {
     const width = isSquare ? size : `calc(${size} * 0.8)`;
     const height = isSquare ? size : `calc(${size} * 1.2)`;
