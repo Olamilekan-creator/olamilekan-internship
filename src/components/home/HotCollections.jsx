@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,6 +8,8 @@ import Slider from "react-slick";
 const HotCollections = ({ nftData }) => {
   const [localNftData, setLocalNftData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { authorId, id } = useParams();
+
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
@@ -106,12 +108,9 @@ const HotCollections = ({ nftData }) => {
     titleHeight = "10px",
     imageWidth = "100%",
     ercHeight = "20px",
-    ppHeight = "40px",
     imageClass = "skeleton-image",
     titleClass = "skeleton-title",
     ercClass = "skeleton-erc",
-    ppClass = "skeleton-icon",
-    margin = "0 auto",
   }) => {
     return (
       <div className="px-1">
@@ -189,7 +188,7 @@ const HotCollections = ({ nftData }) => {
                   <div key={index} className="px-1">
                     <div className="nft_coll">
                       <div className="nft_wrap">
-                        <Link to={`/item-details/${nft.nftId}`}>
+                        <Link to={`/item-details/${nft.id}`}>
                           <img
                             src={`${nft.nftImage}`}
                             className="lazy img-fluid"

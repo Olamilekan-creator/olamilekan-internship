@@ -4,19 +4,16 @@ import { Link } from "react-router-dom";
 
 import Skeleton from "./Skeleton";
 
-const SkeletonCard = () => {
+const SkeletonAuthorItem = () => {
   return (
+     <div className="de_tab_content">
     <div className="nft__item">
       <div className="author_list_pp">
-        <Link to="/author" data-bs-toggle="tooltip" data-bs-placement="top">
+        <Link to="#" data-bs-toggle="tooltip" data-bs-placement="top">
           <Skeleton width="50px" height="50px" borderRadius="50%" />
 
           <i className="fa fa-check"></i>
         </Link>
-      </div>
-
-      <div className="de_countdown_skeleton">
-        <Skeleton width="130px" height="30px"  left="89%" />
       </div>
 
       <div className="nft__item_wrap">
@@ -42,7 +39,7 @@ const SkeletonCard = () => {
           </div>
         </div>
 
-        <Link to="/item-details">
+        <Link to="#">
           <Skeleton width="100%" height="225px" />
         </Link>
       </div>
@@ -61,7 +58,8 @@ const SkeletonCard = () => {
         </div>
       </div>
     </div>
+    </div>
   );
 };
 
-export default SkeletonCard;
+export default SkeletonAuthorItem;
