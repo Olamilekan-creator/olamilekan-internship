@@ -15,12 +15,8 @@ import SkeletonCard from "../UI/SkeletonCard";
 const NewItems = ({ nftData }) => {
   const [localNftData, setLocalNftData] = useState([]);
   const [timeLeft, setTimeLeft] = useState(5 * 60 * 60 + 30 * 60 + 32);
-
-  const { authorId, id } = useParams();
-
-
   const [isLoading, setIsLoading] = useState(true);
-  const { authorId, id } = useParams();
+  const { authorId, nftId } = useParams();
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
@@ -199,7 +195,7 @@ const NewItems = ({ nftData }) => {
                           </div>
                         </div>
 
-                        <Link to={`/item-details/${nft.id}`}>
+                        <Link to={`/item-details/${nft.nftId}`}>
                           <img
                             src={nft.nftImage}
                             className="lazy nft__item_preview"
@@ -209,7 +205,7 @@ const NewItems = ({ nftData }) => {
                       </div>
 
                       <div className="nft__item_info">
-                        <Link to="/item-details">
+                        <Link to={`/item-details/${nft.nftId}`}>
                           <h4>{nft.title}</h4>
                         </Link>
 
