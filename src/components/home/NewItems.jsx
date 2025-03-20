@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import axios from "axios";
 
@@ -14,11 +14,9 @@ import SkeletonCard from "../UI/SkeletonCard";
 
 const NewItems = ({ nftData }) => {
   const [localNftData, setLocalNftData] = useState([]);
-
   const [timeLeft, setTimeLeft] = useState(5 * 60 * 60 + 30 * 60 + 32);
-
-
   const [isLoading, setIsLoading] = useState(true);
+  const { authorId, id } = useParams();
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
@@ -159,7 +157,7 @@ const NewItems = ({ nftData }) => {
                     <div className="nft__item">
                       <div className="author_list_pp">
                         <Link
-                          to="/author"
+                          to={`/author/${nft.authorId}`}
                           data-bs-toggle="tooltip"
                           data-bs-placement="top"
                           title="Creator: Monica Lucas"

@@ -8,7 +8,7 @@ import Slider from "react-slick";
 const HotCollections = ({ nftData }) => {
   const [localNftData, setLocalNftData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { authorId, id } = useParams();
+  const { authorId, id, exploreId } = useParams();
 
 
   useEffect(() => {
@@ -207,7 +207,7 @@ const HotCollections = ({ nftData }) => {
                         <i className="fa fa-check"></i>
                       </div>
                       <div className="nft_coll_info">
-                        <Link to="/explore">
+                        <Link to={`/explore/${nft.exploreId}`}>
                           <h4>{`${nft.title}`}</h4>
                         </Link>
                         <span>ERC-{`${nft.code}`}</span>
