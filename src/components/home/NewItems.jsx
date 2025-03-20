@@ -20,7 +20,7 @@ const NewItems = ({ nftData }) => {
 
 
   const [isLoading, setIsLoading] = useState(true);
-  const { authorId, id } = useParams();
+
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
