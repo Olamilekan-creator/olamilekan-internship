@@ -12,8 +12,16 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
+
         <Route path="/explore/:exploreId" element={<Explore />} />
+
+        <Route path="/explore/:id" element={<Explore />} />
+        <Route path="/author/:id" element={<Author />} />
+
+        <Route path="/explore" element={<Explore />} />
+
         <Route path="/author/:authorId" element={<Author />} />
+
         <Route path="/item-details/:id" element={<ItemDetails />} />
       </Routes>
       <Footer />
