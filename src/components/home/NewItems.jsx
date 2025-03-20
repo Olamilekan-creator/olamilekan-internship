@@ -1,26 +1,15 @@
 import React, { useState, useEffect } from "react";
-
-import { Link } from "react-router-dom";
-
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-
 import "slick-carousel/slick/slick.css";
-
 import "slick-carousel/slick/slick-theme.css";
-
 import Slider from "react-slick";
-
 import SkeletonCard from "../UI/SkeletonCard";
 
 const NewItems = ({ nftData }) => {
   const [localNftData, setLocalNftData] = useState([]);
-
   const [timeLeft, setTimeLeft] = useState(5 * 60 * 60 + 30 * 60 + 32);
-
-
   const { authorId, id } = useParams();
-
-
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
