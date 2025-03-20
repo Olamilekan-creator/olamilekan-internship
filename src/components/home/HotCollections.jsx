@@ -8,7 +8,7 @@ import Slider from "react-slick";
 const HotCollections = ({ nftData }) => {
   const [localNftData, setLocalNftData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { authorId, id, exploreId } = useParams();
+  const { authorId, id, exploreId, nftId } = useParams();
 
 
   useEffect(() => {
