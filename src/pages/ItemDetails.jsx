@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import SkeletonItemDetails from "../components/UI/SkeletonItemDetails";
 
-const ItemDetails = ({ nft }) => {
+const ItemDetails = () => {
   const [localNftData, setLocalNftData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { nftId, authorId } = useParams();
@@ -26,7 +26,7 @@ const ItemDetails = ({ nft }) => {
       } finally {
         setTimeout(() => {
           setIsLoading(false);
-        }, 3000);
+        }, 1000);
       }
     };
 
@@ -70,13 +70,13 @@ const ItemDetails = ({ nft }) => {
                             <h6>Owner</h6>
                             <div className="item_author">
                               <div className="author_list_pp">
-                                <Link to={`/author/${nft.authorId}`}>
+                                <Link to={`/author/${localNftData.authorId}`}>
                                   <img className="lazy" src={localNftData.ownerImage} alt="" />
                                   <i className="fa fa-check"></i>
                                 </Link>
                               </div>
                               <div className="author_list_info">
-                                <Link to={`/author/${nft.authorId}`}>{localNftData.ownerName}</Link>
+                                <Link to={`/author/${localNftData.authorId}`}>{localNftData.ownerName}</Link>
                               </div>
                             </div>
                           </div>
@@ -87,13 +87,13 @@ const ItemDetails = ({ nft }) => {
                             <h6>Creator</h6>
                             <div className="item_author">
                               <div className="author_list_pp">
-                                <Link to={`/author/${nft.authorId}`}>
+                                <Link to={`/author/${localNftData.authorId}`}>
                                   <img className="lazy" src={localNftData.creatorImage} alt="" />
                                   <i className="fa fa-check"></i>
                                 </Link>
                               </div>
                               <div className="author_list_info">
-                                <Link to={`/author/${nft.authorId}`}>{localNftData.creatorName}</Link>
+                                <Link to={`/author/${localNftData.authorId}`}>{localNftData.creatorName}</Link>
                               </div>
                             </div>
                           </div>
