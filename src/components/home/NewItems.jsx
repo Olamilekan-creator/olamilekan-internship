@@ -17,7 +17,7 @@ const NewItems = ({ nftData }) => {
   const [timeLeft, setTimeLeft] = useState(5 * 60 * 60 + 30 * 60 + 32);
 
   const [isLoading, setIsLoading] = useState(true);
-  const { authorId, nftId } = useParams():
+  const { authorId, nftId } = useParams();
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
