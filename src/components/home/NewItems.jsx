@@ -14,7 +14,6 @@ const NewItems = ({ nftData }) => {
   const [timeLeft, setTimeLeft] = useState(5 * 60 * 60 + 30 * 60 + 32);
   const { authorId, id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  const { authorId, nftId } = useParams();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -164,7 +163,7 @@ const NewItems = ({ nftData }) => {
             <Slider {...settings}>
               {localNftData.length > 0 &&
                 localNftData.map((nft, index) => (
-                  <div key={index} data-aos="fade-up">
+                  <div key={index} className="px-1" data-aos="fade-up">
                     <div className="nft__item">
                       <div className="author_list_pp">
                         <Link
