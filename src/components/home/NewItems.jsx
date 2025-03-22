@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 import { Link, useParams } from "react-router-dom";
-
 import axios from "axios";
-
 import "slick-carousel/slick/slick.css";
-
 import "slick-carousel/slick/slick-theme.css";
-
 import Slider from "react-slick";
-
 import SkeletonCard from "../UI/SkeletonCard";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -17,9 +12,8 @@ import "aos/dist/aos.css";
 const NewItems = ({ nftData }) => {
   const [localNftData, setLocalNftData] = useState([]);
   const [timeLeft, setTimeLeft] = useState(5 * 60 * 60 + 30 * 60 + 32);
-
+  const { authorId, id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  const { authorId, nftId } = useParams();
 
   useEffect(() => {
     window.scrollTo(0, 0);

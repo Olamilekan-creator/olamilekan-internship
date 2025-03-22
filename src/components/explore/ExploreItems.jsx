@@ -47,7 +47,6 @@ const ExploreItems = () => {
       }
     };
 
-
     fetchNFTs();
 
     const timeout = setTimeout(() => {
