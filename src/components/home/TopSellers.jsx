@@ -1,11 +1,26 @@
 import React,{ useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const TopSellers = () => {
   const [localNftData, setLocalNftData] = useState([]);
   const [isLoading, setIsLoading] = useState([]);
   const { authorId, id } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    AOS.init();
+  }, []);
+  
+  document.addEventListener('aos:in', ({ detail }) => {
+    console.log('animated in', detail);
+  });
+  
+  document.addEventListener('aos:out', ({ detail }) => {
+    console.log('animated out', detail);
+  });
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
@@ -127,7 +142,7 @@ return (
             ))
           ) : (
           <div className="col-md-12">
-            <ol className="author_list">
+            <ol className="author_list" data-aos="fade-up">
             {localNftData.length > 0 &&
                 localNftData.map((nft, index) => (
                 <li key={index}>

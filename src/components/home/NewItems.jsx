@@ -11,6 +11,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 import SkeletonCard from "../UI/SkeletonCard";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const NewItems = ({ nftData }) => {
   const [localNftData, setLocalNftData] = useState([]);
@@ -18,6 +20,19 @@ const NewItems = ({ nftData }) => {
 
   const [isLoading, setIsLoading] = useState(true);
   const { authorId, nftId } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    AOS.init();
+  }, []);
+  
+  document.addEventListener('aos:in', ({ detail }) => {
+    console.log('animated in', detail);
+  });
+  
+  document.addEventListener('aos:out', ({ detail }) => {
+    console.log('animated out', detail);
+  });
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
@@ -154,7 +169,7 @@ const NewItems = ({ nftData }) => {
             <Slider {...settings}>
               {localNftData.length > 0 &&
                 localNftData.map((nft, index) => (
-                  <div key={index}>
+                  <div key={index} data-aos="fade-up">
                     <div className="nft__item">
                       <div className="author_list_pp">
                         <Link

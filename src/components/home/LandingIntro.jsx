@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const LandingIntro = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    AOS.init();
+  }, []);
+  
+  document.addEventListener('aos:in', ({ detail }) => {
+    console.log('animated in', detail);
+  });
+  
+  document.addEventListener('aos:out', ({ detail }) => {
+    console.log('animated out', detail);
+  });
+
   return (
-    <section id="section-intro" className="no-top no-bottom">
+    <section id="section-intro" className="no-top no-bottom" data-aos="fade-up">
       <div className="container">
         <div className="row">
           <div className="col-lg-4 col-md-6 mb-sm-30">

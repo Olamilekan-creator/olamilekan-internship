@@ -7,7 +7,7 @@ import SkeletonItemDetails from "../components/UI/SkeletonItemDetails";
 const ItemDetails = () => {
   const [localNftData, setLocalNftData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { nftId, authorId } = useParams();
+  const { nftId } = useParams();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -70,13 +70,13 @@ const ItemDetails = () => {
                             <h6>Owner</h6>
                             <div className="item_author">
                               <div className="author_list_pp">
-                                <Link to={`/author/${localNftData.authorId}`}>
+                                <Link to={`/author/${localNftData.ownerId}`}>
                                   <img className="lazy" src={localNftData.ownerImage} alt="" />
                                   <i className="fa fa-check"></i>
                                 </Link>
                               </div>
                               <div className="author_list_info">
-                                <Link to={`/author/${localNftData.authorId}`}>{localNftData.ownerName}</Link>
+                                <Link to={`/author/${localNftData.ownerId}`}>{localNftData.ownerName}</Link>
                               </div>
                             </div>
                           </div>
@@ -87,13 +87,13 @@ const ItemDetails = () => {
                             <h6>Creator</h6>
                             <div className="item_author">
                               <div className="author_list_pp">
-                                <Link to={`/author/${localNftData.authorId}`}>
+                                <Link to={`/author/${localNftData.creatorId}`}>
                                   <img className="lazy" src={localNftData.creatorImage} alt="" />
                                   <i className="fa fa-check"></i>
                                 </Link>
                               </div>
                               <div className="author_list_info">
-                                <Link to={`/author/${localNftData.authorId}`}>{localNftData.creatorName}</Link>
+                                <Link to={`/author/${localNftData.creatorId}`}>{localNftData.creatorName}</Link>
                               </div>
                             </div>
                           </div>

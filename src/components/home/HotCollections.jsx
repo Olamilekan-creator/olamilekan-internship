@@ -4,6 +4,8 @@ import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HotCollections = ({ nftData }) => {
   const [localNftData, setLocalNftData] = useState([]);
@@ -32,6 +34,19 @@ const HotCollections = ({ nftData }) => {
     };
     fetchNFTs();
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    AOS.init();
+  }, []);
+  
+  document.addEventListener('aos:in', ({ detail }) => {
+    console.log('animated in', detail);
+  });
+  
+  document.addEventListener('aos:out', ({ detail }) => {
+    console.log('animated out', detail);
+  });
 
   const Arrow = ({ className, style, onClick }) => {
     return (
@@ -185,7 +200,7 @@ const HotCollections = ({ nftData }) => {
             <Slider {...settings}>
               {localNftData.length > 0 &&
                 localNftData.map((nft, index) => (
-                  <div key={index} className="px-1">
+                  <div key={index} className="px-1" data-aos="fade-up">
                     <div className="nft_coll">
                       <div className="nft_wrap">
                         <Link to={`/item-details/${nft.nftId}`}>
