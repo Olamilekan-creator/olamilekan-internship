@@ -47,9 +47,8 @@ const ExploreItems = () => {
       }
     };
 
-  if (id) {
+
     fetchNFTs();
-}
 
     const timeout = setTimeout(() => {
       setIsLoading(false);
@@ -108,9 +107,9 @@ const ExploreItems = () => {
             <>
       {localNftData.length > 0 &&
    localNftData.slice(0, visibleItems).map((nft, index) => (
-        <div key={index}
+        <div key={index} data-aos="fade-up"
         className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-        style={{ display: "block", backgroundSize: "cover" }} data-aos="fade-up">
+        style={{ display: "block", backgroundSize: "cover" }}>
           <div className="nft__item">
             <div className="author_list_pp">
               <Link

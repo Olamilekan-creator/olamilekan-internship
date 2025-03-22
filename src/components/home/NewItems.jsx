@@ -169,7 +169,7 @@ const NewItems = ({ nftData }) => {
             <Slider {...settings}>
               {localNftData.length > 0 &&
                 localNftData.map((nft, index) => (
-                  <div key={index} data-aos="fade-up">
+                  <div key={index} className="px-1" data-aos="fade-up">
                     <div className="nft__item">
                       <div className="author_list_pp">
                         <Link
