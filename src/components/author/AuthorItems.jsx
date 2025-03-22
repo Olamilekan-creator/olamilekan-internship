@@ -1,14 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SkeletonAuthorItem from "../UI/SkeletonAuthorItem";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const AuthorItems = ({ localNftData, nftCollection }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const { nftID } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    AOS.init();
+  }, []);
+  
+  document.addEventListener('aos:in', ({ detail }) => {
+    console.log('animated in', detail);
+  });
+  
+  document.addEventListener('aos:out', ({ detail }) => {
+    console.log('animated out', detail);
+  });
 
   useEffect(() => {
 setTimeout(() => {
   setIsLoading(false)
-}, 1000)
+}, 500)
   }, [localNftData, nftCollection]);
 
   return (
@@ -19,7 +35,7 @@ setTimeout(() => {
             <SkeletonAuthorItem />
           ) : (
             nftCollection.map((nft, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index} data-aos="fade-up">
                 <div className="nft__item">
                   
   

@@ -1,10 +1,26 @@
 import React,{ useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const TopSellers = () => {
   const [localNftData, setLocalNftData] = useState([]);
   const [isLoading, setIsLoading] = useState([]);
+  const { authorId, id } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    AOS.init();
+  }, []);
+  
+  document.addEventListener('aos:in', ({ detail }) => {
+    console.log('animated in', detail);
+  });
+  
+  document.addEventListener('aos:out', ({ detail }) => {
+    console.log('animated out', detail);
+  });
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
@@ -69,16 +85,13 @@ const SkeletonNftCard = ({
         width: imageWidth
        }}
     ></div>{" "}
-      <Link to="/author">
         <img
           className="lazy pp-author"
           src=""
           alt=""
         />
-      </Link>
     </div>
     <div className="author_list_info">
-      <Link to="/author">
       <Skeleton width="55px" height="10px" isSquare={true} />
     <div
       className={`${titleClass}`}
@@ -86,7 +99,6 @@ const SkeletonNftCard = ({
         width: titleWidth
        }}
     ></div>{" "}
-    </Link>
       <span>
       <Skeleton width="35px" height="10px" isSquare={true} />
     <div
@@ -130,13 +142,13 @@ return (
             ))
           ) : (
           <div className="col-md-12">
-            <ol className="author_list">
+            <ol className="author_list" data-aos="fade-up">
             {localNftData.length > 0 &&
                 localNftData.map((nft, index) => (
                 <li key={index}>
                   <div className="author_list_pp">
                     <Skeleton />
-                    <Link to="/author">
+                    <Link to={`/author/${nft.authorId}`}>
                       <img
                         className="lazy pp-author"
                         src={nft.authorImage}
@@ -146,7 +158,7 @@ return (
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to="/author">{nft.authorName}</Link>
+                    <Link to={`/author/${nft.authorId}`}>{nft.authorName}</Link>
                     <span>{`${nft.price}`} ETH</span>
                   </div>
                 </li>
