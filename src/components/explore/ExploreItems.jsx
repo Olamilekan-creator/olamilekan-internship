@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
 import SkeletonNftExplore from "../UI/SkeletonNftExplore";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 const ExploreItems = () => {
   const [localNftData, setLocalNftData] = useState([]);
@@ -10,6 +13,19 @@ const ExploreItems = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState("");
   const { authorId, id, nftId } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    AOS.init({ duration: 2000 });
+  }, []);
+  
+  document.addEventListener('aos:in', ({ detail }) => {
+    console.log('animated in', detail);
+  });
+  
+  document.addEventListener('aos:out', ({ detail }) => {
+    console.log('animated out', detail);
+  });
 
   useEffect(() => {
     if (localNftData && localNftData.length > 0) {
@@ -94,7 +110,7 @@ const ExploreItems = () => {
    localNftData.slice(0, visibleItems).map((nft, index) => (
         <div key={index}
         className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-        style={{ display: "block", backgroundSize: "cover" }}>
+        style={{ display: "block", backgroundSize: "cover" }} data-aos="fade-up">
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
