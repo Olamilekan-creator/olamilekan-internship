@@ -37,7 +37,7 @@ const HotCollections = ({ nftData }) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    AOS.init();
+    AOS.init({ duration: 2000 });
   }, []);
   
   document.addEventListener('aos:in', ({ detail }) => {

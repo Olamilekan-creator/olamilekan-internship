@@ -5,7 +5,7 @@ import "aos/dist/aos.css";
 const LandingIntro = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
-    AOS.init();
+    AOS.init({ duration: 1500 });
   }, []);
   
   document.addEventListener('aos:in', ({ detail }) => {
